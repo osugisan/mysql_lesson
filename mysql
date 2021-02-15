@@ -1,0 +1,36 @@
+データ型
+
+数値型
+int型
+整数
+
+tinyint型
+小さな整数 -128〜127
+※tinyint(1)
+1 = true, 0 = false
+
+float, double型（double型が実用的）
+浮動小数点
+
+文字列型
+char型
+固定の２５５文字まで
+例）ID５桁 → char(5)
+
+varchar型
+可変長の255文字まで
+例）varchar(255)
+
+text型
+255文字以上
+
+日付型
+date型
+日付
+
+datetime型
+日付と時刻
+
+time型
+時刻
+
