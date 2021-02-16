@@ -1,9 +1,35 @@
 SQL 
 
-select文
+・select文
 select * from テーブル名（全列）
 
-select (列) from テーブル名
+select カラム名 from テーブル名
 
 ※エラー
 エラーコードから調べてみる
+
+
+・コメントアウト
+1)
+-- SQL
+
+2)
+/* SQL
+SQL */
+
+
+・列に別名をつける
+select name as 名前, price as 価格 from products;
+（asは省略可）
+
+・税込価格表示
+select
+	name as 名前,
+	price as 価格,
+  price * 1.08 as 税込価格　←　計算できる
+from
+	products;
+
+・条件検索(where句)
+select name 名前, price 価格 from products where price >= 9800;
+
