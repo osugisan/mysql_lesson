@@ -1,0 +1,9 @@
+SQL 
+
+select文
+select * from テーブル名（全列）
+
+select (列) from テーブル名
+
+※エラー
+エラーコードから調べてみる
