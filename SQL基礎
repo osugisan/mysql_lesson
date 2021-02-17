@@ -86,3 +86,16 @@ select * from users where last_name like '中%';
 何かしらの２文字から始まり、子で終わる
 
 
+limit句
+
+最初(1)から、10件取得
+select * from products limit 10;
+select * from products limit 0, 10;
+
+10から、10件取得
+select * from products limit 10, 10;
+
+実務では、1000件程度で制限かけて抽出
+　→本番環境DBが止まると悲惨
+
+テストDBを作成し実行すべき
