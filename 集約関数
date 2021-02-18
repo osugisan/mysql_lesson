@@ -1,4 +1,4 @@
-合計
+・合計
 sum(カラム名)
 
 select
@@ -10,9 +10,108 @@ where
     and order_time < '2017-02-01 00:00:00';
 
 
-平均
+・平均
 avg(カラム名)
 
 select avg(price) from products;
 
 
+・最小値
+min(カラム名)
+
+select min(price) from products;
+
+
+・最大値
+max(カラム名)
+
+select max(price) from products;
+
+
+・nullの扱い
+nullはないほうが良い
+
+nullの代わり
+例）
+数値　→　０
+文字列　→　" " 空文字
+
+
+・カウント
+count(カラム名)
+
+select count(*) from users;
+
+※女性ユーザーの数
+select count(*) from users where gender = 2;
+
+
+・ユニークのカウント
+count(distinct カラム名)　→　重複を排除してカウント
+
+select 
+	count(distinct user_id)
+from 
+	access_logs
+where
+	request_month ='2017-01-01';
+
+
+グループ化
+group by カラム名
+
+都道府県ごとの数を抽出
+select 
+	prefecture_id, count(*) 
+from 
+	users 
+group by 
+	prefecture_id;
+
+
+・期間ごとに集約
+
+2017年から2018年の間、月別のアクセスアカウント数
+
+select
+	request_month 月,
+	count(distinct user_id) アクセス数
+from
+	access_logs
+where
+	request_month >= '2017-01-01'
+    and request_month < '2018-01-01'
+group by
+	request_month;
+
+
+さらに絞り込む
+having句
+
+※この順番で
+select → from → where → group by → having
+
+630アカウント数以上の月のみ抽出
+select 
+	request_month 月,
+	count(distinct user_id) アクセス数
+from 
+	access_logs
+where
+	request_month >= '2017-01-01'
+    and request_month < '2018-01-01'
+group by
+	request_month
+having
+	count(distinct user_id) >= 630;
+
+
+記述順序
+
+select　　 カラム
+from　　　 テーブル
+where　　　絞り込み条件
+group by　グループ化
+having　  グループ化あとの絞り込み条件
+order by　並び替え
+limit　   取得するロウの制限
