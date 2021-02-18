@@ -1,0 +1,19 @@
+・並び順の指定
+
+acs
+昇順（デフォルト）
+desc
+降順
+
+降順（価格高い順）
+select * from products order by price desc;
+昇順（価格安い順）
+select * from products order by price (asc);
+※ascは省略可
+
+
+・複数の並べ替え
+カンマで区切って続ける
+
+価格高い順で、同じ時はidが若い順
+select * from products order by price desc, id;
