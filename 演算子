@@ -1,0 +1,48 @@
+・絶対値(abs関数)
+ゼロからの距離を示す数値
+
+10の絶対値
+select abs(10);
+-10の絶対値
+select abs(-10);
+0の絶対値
+select abs(0);
+
+
+・四捨五入
+round(対象の数値, 丸めの桁数)
+
+小数点第一で価格を四捨五入
+select id, name, round(price * 1.08, 0) from products;
+小数第一位で四捨五入
+select round(10.555, 0);
+小数第二位で四捨五入
+select round(10.555, 1);
+小数第三位で四捨五入
+select round(10.555, 2);
+
+
+・文字列の演算
+名字＋スペース＋名前＋さん
+select concat(last_name,' ',first_name,'さん') from users;
+
+・日付と時刻の演算
+
+現在日付
+select current_date();
+現在時刻
+select current_timestamp();
+３日後の日付
+select current_date() + interval 3 day;
+３日前の日付
+select current_date() - interval 3 day;
+６時間後の時刻
+select current_timestamp() + interval 6 hour;
+６時間前の時刻
+select current_timestamp() - interval 6 hour;
+2017年1月のorder
+select * from orders where extract(year_month from order_time) = 201701;
+2017年のorder
+select * from orders where extract(year from order_time) = 2017;
+1月のorder
+select * from orders where extract(month from order_time) = 1;
