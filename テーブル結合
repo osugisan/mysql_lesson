@@ -59,12 +59,12 @@ limit
 ２０１７年１月の、東京に住むユーザーの、注文情報一覧
 
 select
-	o.id order_id,
-    o.order_time order_time,
-    o.amount amount,
-    u.id user_id,
-    u.last_name last_name,
-    u.first_name first_name
+  o.id order_id,
+  o.order_time order_time,
+  o.amount amount,
+  u.id user_id,
+  u.last_name last_name,
+  u.first_name first_name
 from
 	orders o
 inner join
@@ -78,3 +78,93 @@ order by order_id;
 
 ※whereの複数検索は "and"
 
+
+・外部結合
+left outer join（nullも表示）
+※inner join（nullは表示されない）
+
+すべての商品について、販売個数を抽出
+
+select
+	p.id,
+  p.name,
+  sum(od.product_qty) num
+from
+	products p
+left outer join
+	order_details od
+on p.id = od.product_id
+group by p.id;
+
+
+・３つ以上のテーブルの結合
+joinは複数回使える
+
+注文一覧抽出（注文詳細情報と商品情報とユーザーの名前も）
+
+select
+	o.id order_id,
+  o.user_id user_id,
+  u.last_name last_name,
+  u.first_name first_name,
+  o.amount amount,
+  o.order_time order_time,
+  p.name product_name,
+  od.product_qty qty,
+  p.price product_price
+from
+	orders o
+inner join
+	order_details od
+on o.id = od.order_id
+inner join
+	products p
+on od.product_id = p.id
+inner join
+	users u
+on o.user_id = u.id;
+
+
+・多対多の結合
+
+商品idが３のカテゴリー名
+
+select
+	p.id product_id,
+  p.name product_name,
+  c.name category_name
+from
+	products p
+inner join products_categories pc
+	on p.id = pc.product_id
+inner join categories c
+	on pc.category_id = c.id
+where
+	p.id = 3;
+
+
+・テーブルの足し算
+union（重複行は削除）
+union all（重複行も表示）
+
+男性顧客と女性従業員の一覧
+
+select
+	email,
+    last_name,
+    first_name,
+    gender
+from
+	users
+where
+	gender = 1
+union
+select
+	email,
+    last_name,
+    first_name,
+    gender
+from
+	admin_users
+where
+	gender = 2;
