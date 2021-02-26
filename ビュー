@@ -1,0 +1,39 @@
+・ビューの作成
+create view viewの名前(列名１, 列名２)
+as
+.....
+
+都道府県ごとのユーザー数
+
+create view prefecture_user_counts(name, count)
+as
+select
+	p.name name,
+    count(*) count
+from
+	users u
+inner join
+	prefectures p
+on u.prefecture_id = p.id
+group by
+	u.prefecture_id;
+
+保存したビューの実行
+
+select
+	name,
+  count
+  ※ * でもよさげ？
+from
+	prefecture_user_counts;
+
+・ビュー制約
+order by句使えない
+
+insert, delete, updateに制約がある
+select句にdistinctが含まれていない
+from句に含まれるテーブルが一つだけ
+group by句を使用していない
+having句を使用していない
+
+
