@@ -36,4 +36,8 @@ from句に含まれるテーブルが一つだけ
 group by句を使用していない
 having句を使用していない
 
+・ビューの削除
+
+drop view prefecture_user_counts;
+
 
