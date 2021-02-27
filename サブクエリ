@@ -37,3 +37,23 @@ where id in (
   where
     order_time >= '2017-12-01 00:00:00'
       and order_time < '2018-01-01 00:00:00');
+
+
+・スカラサブクエリ
+一行一列だけの戻り値を返すクエリを使って、絞り込み検索
+
+全商品の平均単価より、単価が高い商品一覧（高い順、同じ時はidが小さい順）
+select
+	*
+from
+	products
+where
+	price >
+    (
+		select
+			avg(price)
+		from
+			products
+	)
+order by
+  price desc, id asc;
