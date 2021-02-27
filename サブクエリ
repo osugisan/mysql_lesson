@@ -1,1 +1,39 @@
-サブクエリ
+・除外して検索
+whrer カラム名 not in (select 〜 )
+
+２０１７年１２月の間、注文して'いない'ユーザー情報
+
+select
+	id,
+    last_name,
+    email
+from
+	users
+where id not in(
+  select
+    user_id
+  from
+    orders
+  where
+    order_time >= '2017-12-01 00:00:00'
+      and order_time < '2018-01-01 00:00:00');
+
+
+・追加して検索
+where カラム名 in (select 〜 )
+
+２０１７年１２月に注文'した'ユーザー情報
+select
+	id,
+    last_name,
+    email
+from
+	users
+where id in (
+  select
+    user_id
+  from
+    orders
+  where
+    order_time >= '2017-12-01 00:00:00'
+      and order_time < '2018-01-01 00:00:00');
