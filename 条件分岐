@@ -44,3 +44,35 @@ left outer join
 on p.id = od.product_id
 group by p.id;
 
+
+・演習
+
+商品別販売個数一覧
+ランク分け
+２０以上　A
+１０以上　B
+それ以下　C
+ランクが高い順に、並べ替え
+必要な列
+商品id, 商品名, 販売個数, ランク
+
+select
+	p.id 商品ID,
+  p.name 商品名,
+  case
+    when sum(od.product_qty) is null then 0
+    else sum(od.product_qty)
+    end 販売個数,
+  case
+    when sum(od.product_qty) >= 20 then 'A'
+    when sum(od.product_qty) >= 10 then 'A'
+    else 'C'
+  end ランク
+from
+	products p
+left outer join
+	order_details od
+on p.id = od.product_id
+group by
+	p.id
+order by ランク, 商品ID;
