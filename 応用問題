@@ -18,3 +18,21 @@ group by
 order by 年月;
 
 ・都道府県別平均客単価
+
+select
+	p.id id,
+    p.name 都道府県名,
+    round(avg(o.amount), 0) 平均単価
+from
+	orders o
+inner join
+	users u
+on o.user_id = u.id
+inner join
+	prefectures p
+on u.prefecture_id = p.id
+group by
+	p.id
+order by id;
+
+・
