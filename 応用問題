@@ -44,10 +44,10 @@ select
     round(avg(o.amount), 0) 平均単価
 from
 	orders o
-inner join 
+inner join
 	users u
 on o.user_id = u.id
-inner join 
+inner join
 	prefectures pf
 on u.prefecture_id = pf.id
 group by

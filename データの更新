@@ -1,1 +1,78 @@
 ・新規データの追加
+
+insert into products(name, price) values('新商品A', 1000);
+
+
+・列指定を省略する場合(あまり使わない)
+※前列に対して、値の指定が必要
+
+insert products values(1002, '新商品B', 2000);
+
+
+・行の複数追加
+insert into products(name, price)
+values
+('新商品C', 3000),
+('新商品D', 4000),
+('新商品E', 5000);
+
+
+・レコードの更新
+
+set sql_safe_updates = 0;　←　大規模なデータの変更には必要
+update products set price = price * 0.9;
+
+
+・特定に行のみ変更
+
+id3の、情報変更
+update products set name = 'SQL入門1', price = 1000 where id= 3;
+
+
+・サブクエリを使って更新
+
+販売個数が10を超える商品は、5%値上げ
+update
+	products
+set
+	price = price * 1.05
+where
+	id in
+    (
+    select
+      product_id
+    from
+      order_details
+    group by
+      product_id
+    having
+      sum(product_qty) >= 10
+    );
+
+
+・行の削除
+delete from テーブル名
+
+delete from products_categories;
+
+
+・条件を指定して削除
+
+delete from products where id = 1001;
+
+
+・サブクエリを使う
+
+１個も売れたことのない商品を削除
+delete
+from
+	products
+where
+	id not in(
+    select
+      product_id
+    from
+      order_details
+    group by
+      product_id
+    );
