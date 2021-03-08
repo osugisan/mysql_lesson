@@ -1,1 +1,18 @@
 ・新規データの追加
+
+insert into products(name, price) values('新商品A', 1000);
+
+
+・列指定を省略する場合(あまり使わない)
+※前列に対して、値の指定が必要
+
+insert products values(1002, '新商品B', 2000);
+
+
+・行の複数追加
+insert into products(name, price)
+values
+('新商品C', 3000),
+('新商品D', 4000),
+('新商品E', 5000);
+
