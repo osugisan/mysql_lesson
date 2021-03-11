@@ -25,4 +25,25 @@ varchar(255) 文字列型
 show columns from books;
 
 
-・
+・テーブル構造の変更削除
+
+// price(int)を、idの後ろに追加
+alter table books add price int after id;
+
+// priceを、unit_price(int)に変更
+alter table books change  price unit_price int;
+
+// unit_priceを削除
+alter table books drop unit_price；
+
+
+・テーブルの削除
+
+// booksテーブルの削除
+drop table books;
+
+
+・DBの削除
+
+drop database book_store;
+
