@@ -1,3 +1,28 @@
 ・データベースの追加
 create database DB名;
 
+・命名ルール
+○ users
+○ mydb2
+○ products_categories
+X _user
+X 1user
+
+・テーブルの追加
+// DB内、テーブル参照
+show tables;
+
+// books(id, title)作成
+create table books(id int not null auto_increment primary key, title varchar(255) not null);
+
+int 整数型
+not null nullなし
+auto_increment 自動的にid割り振り
+primary key 主キー設定
+varchar(255) 文字列型
+
+// テーブル内、カラム参照
+show columns from books;
+
+
+・
